@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eis.core.dao.IndustryTemplateMapper">
+    <resultMap id="BaseResultMap" type="com.eis.common.model.IndustryTemplate">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="template_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="industry" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="open_flag" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="QueryPagingResultMap" type="com.eis.common.vo.detail.IndustryTemplateVO">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="template_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="industryId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="industryName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="open_flag" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, tenant_id, template_name, industry, open_flag
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from industry_template
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from industry_template
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.eis.common.model.IndustryTemplate">
+        insert into industry_template (id, tenant_id, template_name,
+        industry, open_flag)
+        values (#{id,jdbcType=INTEGER}, #{tenantId,jdbcType=INTEGER}, #{templateName,jdbcType=VARCHAR},
+        #{industry,jdbcType=INTEGER}, #{openFlag,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eis.common.model.IndustryTemplate">
+        insert into industry_template
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="templateName != null">
+                template_name,
+            </if>
+            <if test="industry != null">
+                industry,
+            </if>
+            <if test="openFlag != null">
+                open_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId,jdbcType=INTEGER},
+            </if>
+            <if test="templateName != null">
+                #{templateName,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                #{industry,jdbcType=INTEGER},
+            </if>
+            <if test="openFlag != null">
+                #{openFlag,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.eis.common.model.IndustryTemplate">
+        update industry_template
+        <set>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId,jdbcType=INTEGER},
+            </if>
+            <if test="templateName != null">
+                template_name = #{templateName,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                industry = #{industry,jdbcType=INTEGER},
+            </if>
+            <if test="openFlag != null">
+                open_flag = #{openFlag,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.eis.common.model.IndustryTemplate">
+        update industry_template
+        set tenant_id = #{tenantId,jdbcType=INTEGER},
+        template_name = #{templateName,jdbcType=VARCHAR},
+        industry = #{industry,jdbcType=INTEGER},
+        open_flag = #{openFlag,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from industry_template
+        where tenant_id = #{param1}
+        order by industry,template_name
+    </select>
+
+    <select id="getIndustryTemplateDetail" resultMap="QueryPagingResultMap" parameterType="java.lang.Integer">
+        select industry_template.id, industry_template.tenant_id, template_name,industry.id industryId,industry.name
+        industryName, open_flag
+        from industry_template
+        left join industry on industry.id = industry_template.industry
+        where industry_template.id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryPaging" resultType="java.util.Map" parameterType="map">
+        SELECT
+        t.id templateId,
+        t.tenant_id tenantId,
+        t.template_name templateName,
+        i.id industryId,
+        i.name industryName,
+        i.icon_url industryIconUrl,
+        t.open_flag openFlag,
+        d.title,
+        d.summary,
+        d.head_pic headPic,
+        d.price,
+        d.audit_status auditStatus,
+        (SELECT
+        COUNT(*)
+        FROM
+        industry_template x
+        WHERE
+        x.id_temp = t.id) usedCnt
+        FROM
+        industry_template t
+        LEFT JOIN
+        industry_template_detail d ON t.id = d.template_id
+        LEFT JOIN
+        industry i ON i.id = t.industry
+        WHERE
+        1 = 1
+        <if test="industry != null">
+            and t.industry = #{industry,jdbcType=INTEGER}
+        </if>
+        <if test="openFlag != null">
+            and t.open_flag = #{openFlag,jdbcType=VARCHAR}
+        </if>
+        <if test="auditStatus != null">
+            and d.audit_status = #{auditStatus,jdbcType=VARCHAR}
+        </if>
+        order by t.template_name
+    </select>
+
+    <select id="queryTemplateId" resultType="java.util.Map" parameterType="map">
+        SELECT
+        t.id templateId
+        FROM
+        industry_template t
+        WHERE
+        t.open_flag = 'public'
+        and t.industry = #{industry}
+        order by t.template_name
+    </select>
+
+    <select id="queryWaitAuditPaging" resultType="java.util.Map" parameterType="map">
+        SELECT
+        t.id templateId,
+        t.tenant_id tenantId,
+        t.template_name templateName,
+        i.id industryId,
+        i.name industryName,
+        i.icon_url industryIconUrl,
+        t.open_flag openFlag,
+        d.title,
+        d.summary,
+        d.head_pic headPic,
+        d.price,
+        d.audit_status auditStatus,
+        (SELECT
+        COUNT(*)
+        FROM
+        industry_template x
+        WHERE
+        x.id_temp = t.id) usedCnt
+        FROM
+        industry_template t
+        LEFT JOIN
+        industry_template_detail d ON t.id = d.template_id
+        LEFT JOIN
+        industry i ON i.id = t.industry
+        WHERE
+        d.audit_status = 0
+        ORDER BY t.template_name
+    </select>
+
+    <select id="queryTemplateByTenantIdPaging" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from industry_template
+        where tenant_id = #{tenantId}
+        order by industry,template_name
+    </select>
+    <select id="selectByPrimaryKeyAndSchemaDb" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from ${param2}.industry_template
+        where id = #{param1,jdbcType=INTEGER}
+    </select>
+</mapper>

@@ -1,0 +1,1528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.eis.dao.TenantRegisterMapper">
+    <resultMap id="BaseResultMap" type="com.eis.common.model.TenantRegister">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="pwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="company_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="industry" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="template" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="register_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="status" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="active_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="active_code" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="domain" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="employee_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tenant_type" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="config_tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="channel" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="BusinessComponentMap" type="com.eis.core.model.BusinessComponent">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="uuid" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="allow_modify" jdbcType="BIT" javaType="java.lang.Boolean"/>
+            <arg column="allow_delete" jdbcType="BIT" javaType="java.lang.Boolean"/>
+            <arg column="is_log_open" jdbcType="BIT" javaType="java.lang.Boolean"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="TenantVerifyTenantTablesMap" type="com.eis.common.model.TenantVerifyTenantTables">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="batch_no" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="db_verify" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="m_tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="bc_uuid" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="TenantVerifyLogMap" type="com.eis.common.model.TenantVerifyLog">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="batch_no" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="db_verify" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="op_type" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="m_tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="column_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="config_data_type" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="column_data_type" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="TenantUpgradeConfigLogMap" type="com.eis.common.model.TenantUpgradeConfigLog">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="batch_no" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="op_type" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="config_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="TenantMerchantInfoMap" type="com.eis.common.model.TenantMerchantInfo">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="tenant_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="merchant_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="short_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="mail" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="website" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="introduction" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="industry" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="brief_introduction" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="merchant_logo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="contact_phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="deal_tip" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="status" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="location_latitude" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="location_longitude" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="TenantIndexMap" type="com.eis.common.model.TableIndex">
+        <constructor>
+            <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="index_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="column_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, phone, pwd, company_name, industry, template, register_time, status, active_time,
+        active_code, tenant_id, domain, employee_name, tenant_type, config_tenant_id, channel
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from tenant_register
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from tenant_register
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.eis.common.model.TenantRegister">
+        insert into tenant_register (id, phone, pwd,
+        company_name, industry, template,
+        register_time, status, active_time,
+        active_code, tenant_id, domain,
+        employee_name, tenant_type, config_tenant_id, channel
+        )
+        values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR},
+        #{companyName,jdbcType=VARCHAR}, #{industry,jdbcType=INTEGER}, #{template,jdbcType=INTEGER},
+        #{registerTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{activeTime,jdbcType=TIMESTAMP},
+        #{activeCode,jdbcType=VARCHAR}, #{tenantId,jdbcType=INTEGER}, #{domain,jdbcType=VARCHAR},
+        #{employeeName,jdbcType=VARCHAR}, #{tenantType,jdbcType=INTEGER}, #{configTenantId,jdbcType=INTEGER},
+        #{channel,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eis.common.model.TenantRegister">
+        insert into tenant_register
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="pwd != null">
+                pwd,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="industry != null">
+                industry,
+            </if>
+            <if test="template != null">
+                template,
+            </if>
+            <if test="registerTime != null">
+                register_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="activeTime != null">
+                active_time,
+            </if>
+            <if test="activeCode != null">
+                active_code,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="domain != null">
+                domain,
+            </if>
+            <if test="employeeName != null">
+                employee_name,
+            </if>
+            <if test="tenantType != null">
+                tenant_type,
+            </if>
+            <if test="configTenantId != null">
+                config_tenant_id,
+            </if>
+            <if test="channel != null">
+                channel,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null">
+                #{pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                #{industry,jdbcType=INTEGER},
+            </if>
+            <if test="template != null">
+                #{template,jdbcType=INTEGER},
+            </if>
+            <if test="registerTime != null">
+                #{registerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="activeTime != null">
+                #{activeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="activeCode != null">
+                #{activeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId,jdbcType=INTEGER},
+            </if>
+            <if test="domain != null">
+                #{domain,jdbcType=VARCHAR},
+            </if>
+            <if test="employeeName != null">
+                #{employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantType != null">
+                #{tenantType,jdbcType=INTEGER},
+            </if>
+            <if test="configTenantId != null">
+                #{configTenantId,jdbcType=INTEGER},
+            </if>
+            <if test="channel != null">
+                #{channel,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertTenantRegister" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eis.common.model.TenantRegister">
+        insert into tenant_register_delete_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="pwd != null">
+                pwd,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="industry != null">
+                industry,
+            </if>
+            <if test="template != null">
+                template,
+            </if>
+            <if test="registerTime != null">
+                register_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="activeTime != null">
+                active_time,
+            </if>
+            <if test="activeCode != null">
+                active_code,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="domain != null">
+                domain,
+            </if>
+            <if test="employeeName != null">
+                employee_name,
+            </if>
+            <if test="tenantType != null">
+                tenant_type,
+            </if>
+            <if test="configTenantId != null">
+                config_tenant_id,
+            </if>
+            <if test="channel != null">
+                channel,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null">
+                #{pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                #{industry,jdbcType=INTEGER},
+            </if>
+            <if test="template != null">
+                #{template,jdbcType=INTEGER},
+            </if>
+            <if test="registerTime != null">
+                #{registerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="activeTime != null">
+                #{activeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="activeCode != null">
+                #{activeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId,jdbcType=INTEGER},
+            </if>
+            <if test="domain != null">
+                #{domain,jdbcType=VARCHAR},
+            </if>
+            <if test="employeeName != null">
+                #{employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantType != null">
+                #{tenantType,jdbcType=INTEGER},
+            </if>
+            <if test="configTenantId != null">
+                #{configTenantId,jdbcType=INTEGER},
+            </if>
+            <if test="channel != null">
+                #{channel,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.eis.common.model.TenantRegister">
+        update tenant_register
+        <set>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null">
+                pwd = #{pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                industry = #{industry,jdbcType=INTEGER},
+            </if>
+            <if test="template != null">
+                template = #{template,jdbcType=INTEGER},
+            </if>
+            <if test="registerTime != null">
+                register_time = #{registerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="activeTime != null">
+                active_time = #{activeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="activeCode != null">
+                active_code = #{activeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantId != null">
+                tenant_id = #{tenantId,jdbcType=INTEGER},
+            </if>
+            <if test="domain != null">
+                domain = #{domain,jdbcType=VARCHAR},
+            </if>
+            <if test="employeeName != null">
+                employee_name = #{employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantType != null">
+                tenant_type = #{tenantType,jdbcType=INTEGER},
+            </if>
+            <if test="configTenantId != null">
+                config_tenant_id = #{configTenantId,jdbcType=INTEGER},
+            </if>
+            <if test="channel != null">
+                channel = #{channel,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.eis.common.model.TenantRegister">
+        update tenant_register
+        set phone = #{phone,jdbcType=VARCHAR},
+        pwd = #{pwd,jdbcType=VARCHAR},
+        company_name = #{companyName,jdbcType=VARCHAR},
+        industry = #{industry,jdbcType=INTEGER},
+        template = #{template,jdbcType=INTEGER},
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+        status = #{status,jdbcType=VARCHAR},
+        active_time = #{activeTime,jdbcType=TIMESTAMP},
+        active_code = #{activeCode,jdbcType=VARCHAR},
+        tenant_id = #{tenantId,jdbcType=INTEGER},
+        domain = #{domain,jdbcType=VARCHAR},
+        employee_name = #{employeeName,jdbcType=VARCHAR},
+        tenant_type = #{tenantType,jdbcType=INTEGER},
+        config_tenant_id = #{configTenantId,jdbcType=INTEGER},
+        channel = #{channel,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tenant_register
+        where phone = #{0}
+    </select>
+
+    <select id="register" statementType="CALLABLE" parameterType="java.util.Map" resultType="java.util.Map">
+        <![CDATA[
+	    {call proc_tenant_register (#{id,mode=IN,jdbcType=VARCHAR}, #{result,mode=OUT,jdbcType=VARCHAR})}
+	]]>
+    </select>
+
+    <select id="selectByDomain" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tenant_register
+        where domain = #{domain,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByTenantId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from tenant_register
+        where tenant_id = #{tenantId,jdbcType=INTEGER}
+    </select>
+    <select id="selectTenantRegisterInfo" resultType="java.util.Map" parameterType="java.lang.Integer">
+        SELECT
+        tr.company_name,
+        tr.template,
+        i. NAME,
+        t.tenant_id,
+        tr.phone,
+        tr.pwd,
+        tr.domain,
+        tr.employee_name,
+        tr.tenant_type
+        FROM tenant_register tr
+        LEFT JOIN industry_template t ON tr.template = t.id
+        LEFT JOIN industry i ON tr.industry = i.id
+        WHERE tr.id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectNeedCopyConfigTableList" resultType="java.lang.String">
+        SELECT t.table_name FROM tenant_upgrade_config_table t ORDER BY t.table_name
+    </select>
+    <select id="selectTableDataByTableName" parameterType="map" resultType="java.lang.String">
+        SELECT
+        (
+        CASE column_name
+        WHEN 'id' THEN
+        'NULL'
+        WHEN 'id_temp' THEN
+        'NULL'
+        WHEN 'tenant_id' THEN
+        ${tenantId}
+        ELSE
+        concat('`', column_name, '`')
+        END
+        ) column_name
+        FROM
+        (
+        SELECT
+        column_name
+        FROM
+        information_schema. COLUMNS
+        WHERE
+        table_name = #{tableName}
+        AND TABLE_SCHEMA = DATABASE ()
+        ORDER BY
+        ORDINAL_POSITION
+        ) x
+    </select>
+    <insert id="insertSysConfigData" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        insert into ${tableName}
+        select ${column} from ${tableName} where tenant_id = #{tenantId}
+    </insert>
+    <select id="selectBusinessTablesByTenantId" parameterType="java.lang.Integer" resultMap="BusinessComponentMap">
+        SELECT
+        t.id, t.tenant_id, t.uuid, t.name, t.table_name, t.allow_modify, t.allow_delete, t.is_log_open
+        FROM
+        business_component t
+        WHERE
+        t.tenant_id = #{tenantId,jdbcType=INTEGER}
+        AND t.table_name IS NOT NULL
+    </select>
+    <select id="getOtherColumns" parameterType="map" resultType="java.lang.String">
+        SELECT
+        IFNULL(
+        CONCAT(
+        GROUP_CONCAT(
+        CONCAT(
+        '`',
+        t.column_name,
+        '` ',
+        t.data_type,
+        ' NULL'
+        )
+        ORDER BY
+        t.seq
+        ),
+        ','
+        ),
+        ''
+        )
+        FROM
+        field t
+        WHERE
+        bc = #{bcId}
+        AND t.tenant_id = #{tenantId}
+        AND t.column_name IS NOT NULL
+        AND t.data_type IS NOT NULL
+        ORDER BY
+        t.seq
+    </select>
+    <update id="createBusinessTable" parameterType="map">
+        CREATE TABLE t${tenantId}_${tableName} (
+        <if test="column != null">
+            ${column}
+        </if>
+        PRIMARY KEY (`id`) ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+    </update>
+    <select id="getNeedCopyTableData" resultType="java.lang.String">
+        SELECT
+        t.table_name
+        FROM tenant_register_copy_table t
+        WHERE need_copy_data = 1
+        ORDER BY t.table_name
+    </select>
+    <insert id="insertNeedCopyData" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        insert into t${newTenantId}_${tableName}
+        select * from t${oldTenantId}_${tableName} where tenant_id = #{oldTenantId}
+    </insert>
+    <update id="updateNeedCopyData" parameterType="map">
+        update t${newTenantId}_${tableName} set tenant_id = #{newTenantId} where tenant_id = #{oldTenantId}
+    </update>
+    <insert id="insertTenantMerchantInfo" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        insert into tenant_merchant_info (tenant_id, merchant_name, contact_phone)
+        values(#{tenantid}, #{companyName}, #{contactPhone})
+    </insert>
+    <update id="updateStatus" parameterType="map">
+        update tenant_register tr set tr.status = '1', tr.active_time = #{activeTime}, tr.tenant_id = #{tenantId}
+        WHERE tr.id = #{id}
+    </update>
+    <select id="getBatchNo" resultType="java.lang.String">
+        select CONCAT(DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'), CEIL(RAND() * 1000)) from dual
+    </select>
+    <select id="checkDbIsExist" parameterType="java.lang.String" resultType="java.lang.String">
+        select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA=#{param} and TABLE_NAME='tenant'
+    </select>
+    <select id="checkTenantIsExist" parameterType="map" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM ${db}.tenant WHERE tenant_id = #{tenantId}
+    </select>
+    <select id="selectTenantType" parameterType="map" resultType="java.lang.Integer">
+        SELECT tenant_type FROM ${db}.tenant WHERE tenant_id = #{tenantId}
+    </select>
+    <insert id="insertTenantVerify" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_verify_tenants (
+        batch_no,
+        db_verify,
+        tenant_id,
+        m_tenant_id
+        ) SELECT DISTINCT
+        #{batchNo},
+        #{db},
+        t.tenant_id,
+        ${tenantId}
+        FROM
+        ${db}.tenant t
+        WHERE
+        t.tenant_id = #{tenantId}
+        OR t.tenant_id IN (
+        SELECT
+        m.c_tenant_id
+        FROM
+        ${db}.tenant_mapping m
+        WHERE
+        m.m_tenant_id = #{tenantId}
+        )
+    </insert>
+    <select id="getTenantInfoByBatchNo" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+        DISTINCT
+        tenant_id
+        FROM upgradedb.tenant_verify_tenants
+        WHERE batch_no = #{batchNo, jdbcType=VARCHAR}
+    </select>
+    <insert id="insertVerifyTenantTables" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_verify_tenant_tables (
+        batch_no,
+        db_verify,
+        tenant_id,
+        m_tenant_id,
+        bc_uuid,
+        table_name
+        ) SELECT
+        #{batchNo},
+        #{db},
+        ${tenantId},
+        ${tenantVerify},
+        t.uuid,
+        t.table_name
+        FROM
+        ${db}.business_component t
+        WHERE
+        t.tenant_id = #{tenantVerify}
+    </insert>
+    <insert id="insertVerifyLogByBcConfig" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_verify_log (
+        batch_no,
+        db_verify,
+        op_type,
+        tenant_id,
+        m_tenant_id,
+        table_name,
+        remark
+        ) SELECT
+        #{batchNo} batch_no,
+        #{db} db_verify,
+        'bc config NOT exist' op_type,
+        #{tenantId} tenant_id,
+        #{tenantVerify} m_tenant_id,
+        tb.TABLE_NAME table_name,
+        CONCAT(
+        '表',
+        tb.TABLE_NAME,
+        '无BC配置数据'
+        ) remark
+        FROM
+        information_schema. TABLES tb
+        LEFT JOIN ${db}.business_component bc ON bc.tenant_id = #{tenantVerify}
+        AND tb.TABLE_NAME = CONCAT(
+        't',${tenantId},'_',
+        bc.table_name
+        )
+        WHERE
+        tb.TABLE_SCHEMA = #{db}
+        AND tb.TABLE_NAME LIKE CONCAT('t',${tenantId},'_','%')
+        AND bc.id IS NULL
+    </insert>
+    <insert id="insertVerifyLogByTable" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_verify_log (
+        batch_no,
+        db_verify,
+        op_type,
+        tenant_id,
+        m_tenant_id,
+        table_name,
+        remark
+        ) SELECT
+        #{batchNo} batch_no,
+        #{db} db_verify,
+        'bc table not exist' op_type,
+        #{tenantId} tenant_id,
+        #{tenantVerify} m_tenant_id,
+        bc.table_name table_name,
+        CONCAT(
+        '有BC配置，但表',
+        CONCAT('t',${tenantId},'_', bc.table_name),
+        '不存在'
+        ) remark
+        FROM
+        ${db}.business_component bc
+        LEFT JOIN information_schema. TABLES tb ON tb.TABLE_SCHEMA = #{db}
+        AND tb.TABLE_NAME = CONCAT('t',${tenantId},'_', bc.table_name)
+        WHERE
+        bc.tenant_id = #{tenantVerify}
+        AND tb.TABLE_NAME IS NULL
+    </insert>
+    <select id="getBcConfig" parameterType="map" resultMap="TenantVerifyTenantTablesMap">
+        SELECT
+        DISTINCT
+        id,
+        batch_no,
+        db_verify,
+        create_time,
+        tenant_id,
+        m_tenant_id,
+        bc_uuid,
+        table_name
+        FROM upgradedb.tenant_verify_tenant_tables
+        WHERE batch_no = #{batchNo}
+        and tenant_id = #{tenantId}
+        and db_verify = #{db}
+    </select>
+    <insert id="insertVerifyLogByColumnConfig" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_verify_log (
+        batch_no,
+        db_verify,
+        op_type,
+        tenant_id,
+        m_tenant_id,
+        table_name,
+        column_name,
+        config_data_type,
+        column_data_type,
+        remark
+        ) SELECT
+        #{batchNo} batch_no,
+        #{db} db_verify,
+        (
+        CASE
+        WHEN f_id IS NULL THEN
+        'column config not exist'
+        ELSE
+        'column data type not equal'
+        END
+        ) op_type,
+        ${tenantId} tenant_id,
+        ${tenantVerify} m_tenant_id,
+        table_name,
+        column_name,
+        c_data_type,
+        f_data_type,
+        (
+        CASE
+        WHEN f_id IS NULL THEN
+        concat(
+        '表',
+        table_name,
+        '的',
+        column_name,
+        '的Field配置不存在'
+        )
+        ELSE
+        concat(
+        '表',
+        table_name,
+        '的',
+        column_name,
+        '类型',
+        c_data_type,
+        '与Field配置的类型',
+        f_data_type,
+        '不一致'
+        )
+        END
+        ) remark
+        FROM
+        (
+        SELECT
+        c.table_name,
+        c.column_name,
+        f.data_type c_data_type,
+        f.id f_id,
+        c.column_type f_data_type
+        FROM
+        information_schema. COLUMNS c
+        LEFT JOIN ${db}.field f ON f.tenant_id = #{tenantVerify}
+        AND f.bc = #{uuid}
+        AND c.column_name = f.column_name
+        WHERE
+        c.TABLE_SCHEMA = #{db}
+        AND c.TABLE_NAME = CONCAT('t',${tenantId},'_', #{tableName})
+        ) x
+        WHERE
+        f_id IS NULL
+        OR c_data_type != f_data_type
+    </insert>
+    <insert id="insertVerifyLogByColumn" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_verify_log (
+        batch_no,
+        db_verify,
+        op_type,
+        tenant_id,
+        m_tenant_id,
+        table_name,
+        column_name,
+        config_data_type,
+        remark
+        ) SELECT
+        #{batchNo} batch_no,
+        #{db} db_verify,
+        'column not exist' op_type,
+        ${tenantId} tenant_id,
+        ${tenantVerify} m_tenant_id,
+        CONCAT('t',${tenantId},'_', #{tableName}) table_name,
+        f.column_name,
+        f.data_type,
+        concat(
+        '列',
+        f.column_name,
+        '有Field配置，但在表','t',${tenantId},'_', #{tableName},'中不存在此列'
+        ) remark
+        FROM
+        ${db}.field f
+        WHERE
+        f.tenant_id = #{tenantVerify}
+        AND f.bc = #{uuid}
+        AND f.column_name NOT IN (
+        SELECT
+        c.column_name
+        FROM
+        information_schema. COLUMNS c
+        WHERE
+        c.TABLE_SCHEMA = #{db}
+        AND c.TABLE_NAME = CONCAT('t',${tenantId},'_', #{tableName})
+        )
+    </insert>
+    <select id="getTenantVerifyLogByNowAndTenandId" parameterType="map" resultMap="TenantVerifyLogMap">
+        select * from upgradedb.tenant_verify_log where create_time >= #{now} and tenant_id = #{tenantId}
+    </select>
+    <insert id="insertTenantUpgradeLog" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eis.common.model.TenantUpgradeLog">
+        insert into upgradedb.tenant_upgrade_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="batchNo != null">
+                batch_no,
+            </if>
+            <if test="dbBackup != null">
+                db_backup,
+            </if>
+            <if test="dbUpgrade != null">
+                db_upgrade,
+            </if>
+            <if test="isSuccess != null">
+                is_success,
+            </if>
+            <if test="dbTemplate != null">
+                db_template,
+            </if>
+            <if test="tenantUpgrade != null">
+                tenant_upgrade,
+            </if>
+            <if test="tenantTemplate != null">
+                tenant_template,
+            </if>
+            <if test="finishTime != null">
+                finish_time,
+            </if>
+            <if test="result != null">
+                result,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="batchNo != null">
+                #{batchNo,jdbcType=VARCHAR},
+            </if>
+            <if test="dbBackup != null">
+                #{dbBackup,jdbcType=VARCHAR},
+            </if>
+            <if test="dbUpgrade != null">
+                #{dbUpgrade,jdbcType=VARCHAR},
+            </if>
+            <if test="isSuccess != null">
+                #{isSuccess,jdbcType=INTEGER},
+            </if>
+            <if test="dbTemplate != null">
+                #{dbTemplate,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantUpgrade != null">
+                #{tenantUpgrade,jdbcType=INTEGER},
+            </if>
+            <if test="tenantTemplate != null">
+                #{tenantTemplate,jdbcType=INTEGER},
+            </if>
+            <if test="finishTime != null">
+                #{finishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="result != null">
+                #{result,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteTenantUpgradeLogById" parameterType="java.lang.Integer">
+        delete from upgradedb.tenant_upgrade_log
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteTenantVerifyById" parameterType="java.lang.Integer">
+        delete from upgradedb.tenant_verify_tenants
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteVerifyTenantTablesById" parameterType="java.lang.Integer">
+        delete from upgradedb.tenant_verify_tenant_tables
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteVerifyLogById" parameterType="java.lang.Integer">
+        delete from upgradedb.tenant_verify_log
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteVerifyLogByIds" parameterType="java.lang.Integer">
+        delete from upgradedb.tenant_verify_log
+        where id IN ( ${ids} )
+    </delete>
+    <insert id="insertTenantUpgradeTenants" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eis.common.model.TenantUpgradeTenants">
+        INSERT INTO upgradedb.tenant_upgrade_tenants (batch_no, tenant_id) SELECT DISTINCT
+        #{batchNo},
+        t.tenant_id
+        FROM
+        ${dbUpgrade}.tenant t
+        WHERE
+        t.tenant_id = #{tenantId}
+        OR t.tenant_id IN (
+        SELECT
+        m.c_tenant_id
+        FROM
+        ${dbUpgrade}.tenant_mapping m
+        WHERE
+        m.m_tenant_id = #{tenantId}
+        )
+    </insert>
+    <select id="selectDatabase" parameterType="map" resultType="java.lang.String">
+        SELECT SCHEMA_NAME FROM information_schema.SCHEMATA where SCHEMA_NAME = #{backDbName}
+    </select>
+    <update id="createBackupDatabase" parameterType="java.lang.String">
+        CREATE DATABASE ${backDbName}
+    </update>
+    <update id="createBackupTenant" parameterType="map">
+        CREATE TABLE
+        IF NOT EXISTS ${backDbName}.${tableName} LIKE ${upgradeDb}.${tableName}
+    </update>
+    <delete id="deleteBackupTenantData" parameterType="map">
+        DELETE FROM ${backDbName}.${tableName} WHERE tenant_id = #{upgradeTenant}
+    </delete>
+    <insert id="insertBackupTenantData" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ${backDbName}.${tableName}
+        SELECT * FROM ${upgradeDb}.${tableName} WHERE tenant_id = ${upgradeTenant}
+    </insert>
+    <delete id="deleteBackupDatabase" parameterType="java.lang.String">
+        drop database ${backupName}
+    </delete>
+    <delete id="deleteTenantUpgradeTenantsById" parameterType="java.lang.Integer">
+        delete from upgradedb.tenant_upgrade_tenants
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <select id="selectTenantUpgradeTenantsByBatchNo" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT DISTINCT tenant_id FROM upgradedb.tenant_upgrade_tenants WHERE batch_no = #{batchNo}
+    </select>
+    <select id="selectExistsTableByBackup" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT table_name FROM information_schema.TABLES WHERE table_name LIKE #{tenantPrefix}
+        AND TABLE_SCHEMA = #{backDbName} ORDER BY table_name
+    </select>
+    <delete id="deleteExistsTableByBackDbNameAndTablename" parameterType="java.lang.String">
+        DROP TABLE IF EXISTS ${backDbName}.${tableName}
+    </delete>
+    <update id="createBackupTableFromUpgradeTable" parameterType="java.lang.String">
+        CREATE TABLE ${backDbName}.${tableName} LIKE ${upgradeDb}.${tableName}
+    </update>
+    <insert id="insertBackupTableFromUpgradeTable" parameterType="java.lang.String" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO ${backDbName}.${tableName} SELECT * FROM ${upgradeDb}.${tableName}
+    </insert>
+    <insert id="insertTenantUpgradeTableLogByCreateTable" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_upgrade_table_log (
+        batch_no,
+        op_type,
+        `sql`,
+        remark,
+        tenant_id
+        ) SELECT
+        #{batchNo},
+        'create table',
+        CONCAT(
+        'CREATE TABLE ', #{upgradeDb}, '.t', ${tenantId}, '_',
+        t.TABLE_NAME,
+        ' LIKE ', #{templateDb}, '.t', ${templateTenant}, '_',
+        t.TABLE_NAME
+        ),
+        CONCAT(
+        '创建租户', ${tenantId}, '表',
+        t.TABLE_NAME
+        ),
+        #{tenantId}
+        FROM
+        ${templateDb}.business_component t
+        LEFT JOIN ${upgradeDb}.business_component a ON a.tenant_id = #{upgradeTenant}
+        AND t.uuid = a.uuid
+        WHERE
+        t.tenant_id = #{templateTenant}
+        AND a.id IS NULL
+    </insert>
+    <insert id="insertTenantUpgradeTableLogByDropTable" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_upgrade_table_log (
+        batch_no,
+        op_type,
+        `sql`,
+        remark,
+        tenant_id
+        ) SELECT
+        #{batchNo},
+        'drop table',
+        CONCAT(
+        'DROP TABLE ', #{upgradeDb}, '.t', ${tenantId}, '_',
+        a.TABLE_NAME
+        ),
+        CONCAT(
+        '删除租户', ${tenantId}, '表',
+        a.TABLE_NAME
+        ) , #{tenantId}
+        FROM
+        ${upgradeDb}.business_component a
+        LEFT JOIN ${templateDb}.business_component t ON a.tenant_id = #{upgradeTenant}
+        AND t.uuid = a.uuid
+        WHERE
+        t.tenant_id = #{templateTenant}
+        AND t.id IS NULL
+    </insert>
+    <insert id="insertTenantUpgradeTableLogByRenameTable" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_upgrade_table_log (
+        batch_no,
+        op_type,
+        `sql`,
+        remark,
+        tenant_id
+        ) SELECT
+        #{batchNo},
+        'rename table',
+        CONCAT(
+        'ALTER TABLE ', #{upgradeDb}, '.t', ${tenantId}, '_',
+        a.TABLE_NAME,
+        ' RENAME TO ', #{upgradeDb}, '.t', ${tenantId}, '_',
+        t.TABLE_NAME
+        ),
+        CONCAT(
+        '修改租户', ${tenantId}, '表[',
+        a.TABLE_NAME,
+        ']的表名为',
+        t.TABLE_NAME
+        ) , #{tenantId}
+        FROM
+        ${templateDb}.business_component t
+        LEFT JOIN ${upgradeDb}.business_component a ON t.uuid = a.uuid
+        WHERE
+        t.tenant_id = #{templateTenant}
+        AND a.tenant_id = #{upgradeTenant}
+        AND t.TABLE_NAME != a.table_name
+    </insert>
+    <insert id="insertTenantUpgradeTableLogByDropColumn" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_upgrade_table_log(batch_no,op_type,`sql`,remark,tenant_id)
+        SELECT #{batchNo},'drop column',
+        CONCAT('ALTER TABLE ', #{upgradeDb}, '.t', ${tenantId}, '_',
+        b.table_name,
+        ' DROP COLUMN ',
+        a.column_name),
+        CONCAT('修改租户', ${tenantId}, '表[',
+        b.table_name,
+        ']，删除列',
+        a.column_name), ${tenantId}
+        FROM ${upgradeDb}.field a
+        INNER JOIN ${templateDb}.business_component b
+        ON b.tenant_id = #{templateTenant}
+        AND a.bc = b.uuid
+        INNER JOIN ${upgradeDb}.business_component ab
+        ON ab.tenant_id = #{upgradeTenant}
+        AND b.uuid = ab.uuid
+        LEFT JOIN ${templateDb}.field t
+        ON t.tenant_id = #{templateTenant}
+        AND a.uuid = t.uuid
+        WHERE a.tenant_id = #{upgradeTenant}
+        AND t.id IS NULL ORDER BY b.table_name,a.seq
+    </insert>
+    <insert id="insertTenantUpgradeTableLogByChangeColumn" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_upgrade_table_log(batch_no,op_type,`sql`,remark,tenant_id)
+        SELECT #{batchNo},'change column',
+        CONCAT('ALTER TABLE ', #{upgradeDb}, '.t', ${tenantId},'_',b.table_name,' CHANGE COLUMN ',a.column_name,'
+        ',t.column_name,' ',t.data_type,' NULL DEFAULT NULL'),
+        CONCAT('修改租户',${tenantId},'表[',b.table_name,']，修改列 ',a.column_name,' ',a.data_type,' 为 ',t.column_name,'
+        ',t.data_type),${tenantId}
+        FROM ${templateDb}.field t
+        INNER JOIN ${templateDb}.business_component b
+        ON t.tenant_id = b.tenant_id
+        AND t.bc = b.uuid
+        INNER JOIN ${upgradeDb}.business_component ab
+        ON ab.tenant_id = #{upgradeTenant}
+        AND b.uuid = ab.uuid
+        JOIN ${upgradeDb}.field a
+        ON t.uuid = a.uuid
+        WHERE t.tenant_id = #{templateTenant}
+        AND a.tenant_id = #{upgradeTenant}
+        AND (t.column_name != a.column_name
+        OR t.data_type != a.data_type) ORDER BY b.table_name,t.seq
+    </insert>
+    <insert id="insertTenantUpgradeTableLogByAddColumn" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO upgradedb.tenant_upgrade_table_log(batch_no,op_type,`sql`,remark,tenant_id)
+        SELECT #{batchNo},'add column',
+        CONCAT('ALTER TABLE ', #{upgradeDb}, '.t', ${tenantId}, '_',b.table_name,' ADD COLUMN ',t.column_name,'
+        ',t.data_type,' NULL'),
+        CONCAT('修改租户',${tenantId},'表[', b.table_name,']，添加列 ',t.column_name,' ',t.data_type),${tenantId}
+        FROM ${templateDb}.field t
+        INNER JOIN ${templateDb}.business_component b
+        ON t.tenant_id = b.tenant_id
+        AND t.bc = b.uuid
+        INNER JOIN ${upgradeDb}.business_component ab
+        ON ab.tenant_id = #{upgradeTenant}
+        AND b.uuid = ab.uuid
+        LEFT JOIN ${upgradeDb}.field a
+        ON a.tenant_id = #{upgradeTenant}
+        AND t.uuid = a.uuid
+        WHERE t.tenant_id = #{templateTenant}
+        AND a.id IS NULL ORDER BY b.table_name,t.seq
+    </insert>
+    <select id="selectTenantUpgradeTableLogByBatchNoAndTenantIdAndOpType" parameterType="map"
+            resultType="java.lang.String">
+        SELECT t.sql FROM upgradedb.tenant_upgrade_table_log t
+        WHERE t.batch_no = #{batchNo}
+        AND t.tenant_id = #{tenantId}
+        AND t.op_type = #{opType}
+    </select>
+    <delete id="deleteTenantUpgradeTableByBatchNoAndTenantId" parameterType="map">
+        DELETE FROM upgradedb.tenant_upgrade_table_log WHERE batch_no = #{batchNo} and tenant_id = #{tenantId} and
+        op_type = #{opType}
+    </delete>
+    <update id="toExecSql" useGeneratedKeys="true" keyProperty="id" parameterType="java.lang.String">
+        ${_parameter}
+    </update>
+    <select id="selectTableNameFromTenantUpgradeConfigTable" resultType="java.lang.String">
+        SELECT t.TABLE_NAME FROM upgradedb.tenant_upgrade_config_table t ORDER BY t.TABLE_NAME
+    </select>
+    <insert id="insertNeedDeleteColumn" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+        INSERT INTO upgradedb.tenant_upgrade_config_log ( batch_no,
+        op_type,
+        tenant_id,
+        `table_name`,
+        config_id
+        ) SELECT
+        #{batchNo} batch_no,
+        #{opType} op_type,${upgradeTenant} tenant_id,
+        #{tableName} `table_name`,
+        t.id config_id
+        FROM
+        ${upgradeDb}.${tableName} t
+        LEFT JOIN ${templateDb}.${tableName} s ON s.tenant_id = #{templateTenant}
+        AND t.uuid = s.uuid
+        WHERE
+        t.tenant_id = #{upgradeTenant}
+        AND (
+        s.id IS NULL
+        OR t.update_time != s.update_time
+        )
+        <if test="ids != null and ids != ''">
+            and t.id not in (${ids})
+        </if>
+
+    </insert>
+    <insert id="insertNeedInsertColumn" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+        INSERT INTO upgradedb.tenant_upgrade_config_log ( batch_no,
+        op_type,
+        tenant_id,
+        `table_name`,
+        config_id
+        ) SELECT
+        #{batchNo} batch_no,
+        #{opType} op_type,${upgradeTenant} tenant_id,
+        #{tableName} `table_name`,
+        s.id config_id
+        FROM
+        ${templateDb}.${tableName} s
+        LEFT JOIN ${upgradeDb}.${tableName} t ON t.tenant_id = #{upgradeTenant}
+        AND t.uuid = s.uuid
+        WHERE
+        s.tenant_id = #{templateTenant}
+        AND (
+        t.id IS NULL
+        OR t.update_time != s.update_time
+        )
+        <if test="templateIds != null and templateIds != ''">
+            and s.id not in (${templateIds})
+        </if>
+
+    </insert>
+    <delete id="deleteTenantUpgradeConfigLogByBatchNoAndCreateTime" parameterType="java.lang.String">
+        delete from upgradedb.tenant_upgrade_config_log where batch_no = #{batchNo} and create_time > #{createTime}
+    </delete>
+    <select id="getColumnByOpType" parameterType="map" resultMap="TenantUpgradeConfigLogMap">
+        SELECT id, batch_no, create_time, op_type, tenant_id, table_name, config_id
+        FROM upgradedb.tenant_upgrade_config_log
+        WHERE batch_no = #{batchNo}
+        AND tenant_id = #{upgradeTenant}
+        AND op_type = #{opType}
+    </select>
+    <delete id="deleteTenantUpgradeconfigLogById" parameterType="java.lang.String">
+        delete from ${upgradeDb}.${tableName} where id = #{id}
+    </delete>
+    <select id="getNeedInsertColumnSql" parameterType="map" resultType="java.lang.String">
+        SELECT
+        CONCAT(
+        'insert into ',
+        #{upgradeDb},
+        '.',
+        #{tableName},
+        ' select ',
+        GROUP_CONCAT(COLUMN_NAME),
+        ' from ',
+        #{templateDb},
+        '.',
+        #{tableName},
+        ' where id=',
+        ${id}
+        )
+        FROM
+        (
+        SELECT
+        (
+        CASE column_name
+        WHEN 'id' THEN
+        'NULL'
+        WHEN 'id_temp' THEN
+        'NULL'
+        WHEN 'tenant_id' THEN
+        ${upgradeTenant}
+        ELSE
+        CONCAT('`', column_name, '`')
+        END
+        ) column_name
+        FROM
+        (
+        SELECT
+        column_name
+        FROM
+        information_schema. COLUMNS
+        WHERE
+        TABLE_NAME = #{tableName}
+        AND TABLE_SCHEMA = #{templateDb}
+        ORDER BY
+        ORDINAL_POSITION
+        ) x
+        ) y
+    </select>
+    <update id="updateTenantUpgradeLogStatus" parameterType="map">
+        UPDATE upgradedb.tenant_upgrade_log
+        SET result = 'ok',
+        is_success = 1,
+        finish_time = NOW()
+        WHERE batch_no = #{batchNo}
+    </update>
+    <delete id="deleteTenantTableByUpgradeDbAndTenantId" parameterType="map">
+        drop table ${backDbName}.${tableName}
+    </delete>
+    <update id="createTenantTableByBackupDb" parameterType="map">
+        CREATE TABLE ${tableName} AS SELECT * FROM ${backDbName}.${tableName}
+    </update>
+    <insert id="insertRegisterLog" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eis.common.model.TenantRegisterLog">
+        insert into tenant_register_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="getNeedDeleteTenant" resultType="java.lang.String" parameterType="map">
+        SELECT
+        table_name
+        FROM
+        information_schema. TABLES t
+        WHERE
+        table_schema = DATABASE ()
+        AND table_type = 'base table'
+        AND table_name LIKE CONCAT('t',${tenantId},'_','%')
+    </select>
+    <delete id="toDeleteTable" parameterType="map">
+        DROP TABLE if exists ${tableName}
+    </delete>
+    <delete id="toDeleteSysTable" parameterType="map">
+        delete from ${tableName} where tenant_id = #{tenantId}
+    </delete>
+    <select id="getTenantRegister" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from tenant_register
+        where tenant_id = #{tenantId}
+    </select>
+    <select id="getTenantMerchantInfo" resultMap="TenantMerchantInfoMap" parameterType="map">
+        select
+        id, tenant_id, merchant_name, short_name, brief_introduction, merchant_logo, address, contact_phone,
+        deal_tip, status, location_latitude, location_longitude, mail, website, introduction, industry
+        from tenant_merchant_info
+        where tenant_id = #{tenantId}
+    </select>
+    <select id="toCheckDbIsExist" parameterType="java.lang.String" resultType="java.lang.String">
+        select DISTINCT TABLE_SCHEMA from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = #{_parameter}
+    </select>
+    <select id="toCheckDbAndTenantIsExist" parameterType="map" resultType="java.lang.String">
+        select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = #{dbName} and TABLE_NAME like
+        CONCAT('t',${tenantId},'_','%')
+    </select>
+    <select id="getResponsibilityId" parameterType="map" resultType="java.lang.String">
+        select t.uuid from t${tenantId}_responsibility t order by t.id limit 0, 1
+    </select>
+    <delete id="deleteEmpResLink" parameterType="java.lang.Integer">
+        delete from t${tenantId}_emp_res_link where emp_id != #{empId}
+    </delete>
+    <select id="getNeedDeleteLinkTables" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT distinct
+        table_name
+        FROM
+        information_schema. COLUMNS
+        WHERE
+        table_name like CONCAT('t',${tenantId},'_res/_%') escape '/'
+    </select>
+    <delete id="deleteResLink" parameterType="map">
+        delete from ${tableName} where res_id != #{resId}
+    </delete>
+    <select id="getTableIndexInfo" parameterType="map" resultMap="TenantIndexMap">
+        SELECT
+        table_name, index_name, GROUP_CONCAT(column_name) column_name
+        FROM
+        INFORMATION_SCHEMA.STATISTICS
+        WHERE
+        <if test="dbName != null">
+            TABLE_SCHEMA = #{dbName} and
+        </if>
+        index_name != 'PRIMARY'
+        and table_name = #{tableName}
+        group by index_name
+    </select>
+    <update id="toAddTableIndex" parameterType="map">
+        ALTER TABLE
+        <if test="dbName != null and dbName != ''">
+            ${dbName}.
+        </if>
+        ${tableName} ADD INDEX ${indexName} (${columnName})
+    </update>
+    <select id="toCheckRegisterTemplateTables" parameterType="map" resultType="java.lang.String">
+        SELECT distinct
+        TABLE_NAME
+        FROM
+        INFORMATION_SCHEMA. TABLES
+        WHERE
+        TABLE_NAME like CONCAT('t',${tenantId},'_','%') escape '/'
+    </select>
+    <select id="toCheckIndexNameIsExist" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+        count(1)
+        FROM
+        INFORMATION_SCHEMA.STATISTICS
+        WHERE
+        index_name != 'PRIMARY'
+        and table_schema = #{dbName}
+        and table_name = #{tableName}
+        and index_name = #{indexName}
+        and
+        <if test='flag == "1"'>
+            (${columnName})
+        </if>
+        <if test='flag == "0"'>
+            column_name = #{columnName}
+        </if>
+    </select>
+    <select id="getRepeatDataBySysTable" parameterType="map" resultType="java.lang.Integer">
+        select count(1) from ${dbName}.${tableName} t where t.tenant_id = #{tenantId} group by t.uuid having count(1) >
+        1
+    </select>
+    <insert id="insertSelectiveTenantVerifyLog" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eis.common.model.TenantVerifyLog">
+        insert into upgradedb.tenant_verify_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="batchNo != null">
+                batch_no,
+            </if>
+            <if test="dbVerify != null">
+                db_verify,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="opType != null">
+                op_type,
+            </if>
+            <if test="tenantId != null">
+                tenant_id,
+            </if>
+            <if test="mTenantId != null">
+                m_tenant_id,
+            </if>
+            <if test="tableName != null">
+                table_name,
+            </if>
+            <if test="columnName != null">
+                column_name,
+            </if>
+            <if test="configDataType != null">
+                config_data_type,
+            </if>
+            <if test="columnDataType != null">
+                column_data_type,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="batchNo != null">
+                #{batchNo,jdbcType=VARCHAR},
+            </if>
+            <if test="dbVerify != null">
+                #{dbVerify,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="opType != null">
+                #{opType,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantId != null">
+                #{tenantId,jdbcType=INTEGER},
+            </if>
+            <if test="mTenantId != null">
+                #{mTenantId,jdbcType=INTEGER},
+            </if>
+            <if test="tableName != null">
+                #{tableName,jdbcType=VARCHAR},
+            </if>
+            <if test="columnName != null">
+                #{columnName,jdbcType=VARCHAR},
+            </if>
+            <if test="configDataType != null">
+                #{configDataType,jdbcType=VARCHAR},
+            </if>
+            <if test="columnDataType != null">
+                #{columnDataType,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="getDataByContactGroup" resultType="java.lang.String" parameterType="map">
+        select t.dataset_applet_id from ${db}.t${tenantId}_contactgroup t where t.contact_group_type = 'dynamic' and
+        t.tenant_id = #{tenantId}
+        and (t.dataset_applet_id is not null or t.dataset_applet_id != '')
+    </select>
+    <select id="getDataByAppletToReport" resultType="java.lang.String" parameterType="map">
+        select t.report_id from ${db}.t${tenantId}_applet_to_report t where t.applet_id = #{appletId} and t.tenant_id =
+        #{tenantId}
+    </select>
+    <select id="getDataByApplet" resultType="java.lang.Integer" parameterType="map">
+        select t.id from ${db}.applet t where t.tenant_id = #{tenantId} and t.applet_type = 'report' and t.uuid in (
+        ${appletIds}
+        )
+    </select>
+    <select id="getDataAppletByContactGroup" resultType="java.lang.Integer" parameterType="map">
+        select t.id from ${db}.applet t where t.uuid = #{appletId} and t.tenant_id = ${tenantId}
+    </select>
+    <select id="getDataByReport" resultType="java.lang.Integer" parameterType="map">
+        select a.id from ${db}.applet t
+        left join ${db}.report a on t.report = a.uuid and a.tenant_id = #{tenantId}
+        where t.tenant_id = #{tenantId} and t.applet_type = 'report' and t.uuid in (
+        ${appletIds}
+        )
+    </select>
+    <select id="getDataByListColumn" resultType="java.lang.Integer" parameterType="map">
+        select t.id from ${db}.list_column t where t.tenant_id = #{tenantId} and t.parent_applet in (
+        ${appletIds}
+        )
+    </select>
+    <select id="getDataByListColumnGroupDisplayRule" resultType="java.lang.Integer" parameterType="map">
+        select t.id from ${db}.list_column_group_display_rule t
+        left join ${db}.list_column c on t.list_column = c.uuid and c.tenant_id = #{tenantId}
+
+        where t.tenant_id = #{tenantId} and c.parent_applet in (
+        ${appletIds}
+        )
+    </select>
+    <select id="getDataByListColumnGroupRule" resultType="java.lang.Integer" parameterType="map">
+        select t.id from ${db}.list_column_group_rule t
+        left join ${db}.list_column c on t.list_column = c.uuid and c.tenant_id = #{tenantId}
+        where t.tenant_id = #{tenantId} and c.parent_applet in (
+        ${appletIds}
+        )
+    </select>
+    <select id="getDataByAppletButton" resultType="java.lang.Integer" parameterType="map">
+        select t.id from ${db}.applet_button t where t.tenant_id = #{tenantId} and t.applet_id in (
+        ${ids}
+        )
+    </select>
+    <select id="getIsUniqueInfo" resultType="java.lang.Integer">
+        select COUNT(1) from ${param4}.${param2} where tenant_id = #{param1} and (${param3} is not null or ${param3} !=
+        '') group by ${param3}
+    </select>
+    <select id="getDataByPickItem" resultType="java.lang.Integer" parameterType="map">
+        select t.id from ${db}.pick_item t where t.tenant_id = #{tenantId} and t.is_user_modify = 1
+    </select>
+</mapper>
