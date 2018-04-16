@@ -14,8 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableDiscoveryClient
 @EnableTransactionManagement
 @MapperScan("com.eis.*.dao")
-@ComponentScan("com.eis.*.service")
-@EnableAutoConfiguration
+@ComponentScan({"com.eis.*.service","com.eis.core.redis","com.eis.upgrade"})
 public class UpgradeApplication {
 
     public static void main(String[] args) {

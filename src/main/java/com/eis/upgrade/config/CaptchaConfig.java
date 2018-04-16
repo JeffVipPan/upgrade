@@ -25,9 +25,12 @@ public class CaptchaConfig {
         properties.setProperty("kaptcha.textproducer.font.color", "blue");
         properties.setProperty("kaptcha.image.width", "125");
         properties.setProperty("kaptcha.image.height", "45");
+        properties.setProperty("kaptcha.textproducer.font.size", "35");
         properties.setProperty("kaptcha.session.key", "code");
         properties.setProperty("kaptcha.textproducer.char.length", "4");
-        properties.setProperty("kaptcha.textproducer.font.names", "宋体,楷体,微软雅黑");
+        properties.setProperty("kaptcha.textproducer.font.names", "Times New Roman");
+        properties.setProperty("kaptcha.textproducer.char.string", "234567");
+        properties.setProperty("kaptcha.noise.impl", "com.google.code.kaptcha.impl.NoNoise");
         Config config=new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
